@@ -7,3 +7,8 @@ export type User = {
   birthdate: Date;
   registeredAt: Date;
 };
+
+export type StoryProps = {
+  image: string;
+  username: string;
+};
