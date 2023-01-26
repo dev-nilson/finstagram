@@ -1,12 +1,17 @@
 import Image from "next/image";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/solid";
+import {
+  HeartIcon,
+  BellIcon,
+  PlusCircleIcon,
+} from "@heroicons/react/24/outline";
 import logo from "../../../public/logo.png";
 import icon from "../../../public/icon.png";
 
 export default function Navbar() {
   return (
     <nav>
-      <div className="flex justify-between max-w-6xl">
+      <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
         <div className="relative hidden lg:inline-grid w-20 cursor-pointer">
           <Image
             src={logo}
@@ -15,7 +20,7 @@ export default function Navbar() {
             style={{ objectFit: "contain" }}
           />
         </div>
-        <div className="relative inline-grid lg:hidden w-10 flex-shrink-0 cursor-pointer">
+        <div className="relative inline-grid lg:hidden w-6 flex-shrink-0 cursor-pointer">
           <Image
             src={icon}
             alt="icon"
@@ -34,6 +39,17 @@ export default function Navbar() {
               placeholder="Search"
             />
           </div>
+        </div>
+        <div className="flex items-center justify-end space-x-4">
+          <HeartIcon className="nav-icon" />
+          <div className="relative nav-icon">
+            <BellIcon className="nav-icon" />
+            <div className="absolute -top-2 -right-2 text-sm w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">
+              3
+            </div>
+          </div>
+          <PlusCircleIcon className="nav-icon" />
+          <Bars3Icon className="h-7 w-7 md:hidden cursor-pointer" />
         </div>
       </div>
     </nav>
