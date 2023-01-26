@@ -10,7 +10,7 @@ import icon from "../../../public/icon.png";
 
 export default function Navbar() {
   return (
-    <nav>
+    <nav className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
         <div className="relative hidden lg:inline-grid w-20 cursor-pointer">
           <Image
