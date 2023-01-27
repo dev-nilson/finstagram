@@ -12,3 +12,10 @@ export type StoryProps = {
   image: string;
   username: string;
 };
+
+export type PostProps = {
+  id: string;
+  username: string;
+  image: string;
+  caption: string;
+};
