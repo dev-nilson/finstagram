@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-gray-50 h-screen overflow-y-scroll scrollbar-hide">
       <Head>
         <title>Finstagram</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,6 +15,6 @@ export default function Home() {
 
       <Navbar />
       <Feed />
-    </>
+    </div>
   );
 }
