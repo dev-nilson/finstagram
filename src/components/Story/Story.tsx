@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StoryProps } from "../typescript/types";
+import { StoryProps } from "../../typescript/types";
 
 export default function Story({ image, username }: StoryProps) {
   return (

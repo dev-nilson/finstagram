@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-import { User } from "../typescript/types";
+import { User } from "../../typescript/types";
 import Story from "../Story/Story";
 
 export default function Stories() {
