@@ -30,7 +30,7 @@ export default function Posts() {
           id={post.id}
           username={post.username}
           image={post.image}
-          caption={post.image}
+          caption={post.caption}
         />
       ))}
     </div>
