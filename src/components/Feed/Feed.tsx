@@ -1,5 +1,7 @@
 import Posts from "../Posts/Posts";
+import Profile from "../Profile/Profile";
 import Stories from "../Stories/Stories";
+import Suggestions from "../Suggestions/Suggestions";
 
 export default function Feed() {
   return (
@@ -8,7 +10,12 @@ export default function Feed() {
         <Stories />
         <Posts />
       </section>
-      <section></section>
+      <section className="hidden xl:inline-grid md:col-span-1">
+        <div className="fixed top-20">
+          <Profile />
+          <Suggestions />
+        </div>
+      </section>
     </main>
   );
 }
