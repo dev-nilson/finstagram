@@ -1,5 +1,11 @@
 import post from "@/assets/post.jpg";
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import {
+  BookmarkIcon,
+  ChatBubbleOvalLeftIcon,
+  EllipsisHorizontalIcon,
+  HeartIcon,
+  PaperAirplaneIcon,
+} from "@heroicons/react/24/outline";
 import { PostProps } from "@/typescript/types";
 import Image from "next/image";
 
@@ -17,6 +23,15 @@ export default function Post({ id, username, image, caption }: PostProps) {
       </div>
 
       <Image className="object-cover w-full" src={post} alt={caption} />
+
+      <div className="flex justify-between px-4 pt-4">
+        <div className="flex space-x-3">
+          <HeartIcon className="button" />
+          <ChatBubbleOvalLeftIcon className="button" />
+          <PaperAirplaneIcon className="button" />
+        </div>
+        <BookmarkIcon className="button"/>
+      </div>
     </div>
   );
 }
