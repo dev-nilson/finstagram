@@ -3,6 +3,7 @@ import {
   BookmarkIcon,
   ChatBubbleOvalLeftIcon,
   EllipsisHorizontalIcon,
+  FaceSmileIcon,
   HeartIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
@@ -30,13 +31,19 @@ export default function Post({ id, username, image, caption }: PostProps) {
           <ChatBubbleOvalLeftIcon className="button" />
           <PaperAirplaneIcon className="button" />
         </div>
-        <BookmarkIcon className="button"/>
+        <BookmarkIcon className="button" />
       </div>
 
       <p className="p-5 truncate">
         <span className="font-bold mr-1">{username}</span>
         {caption}
       </p>
+
+      <form className="flex items-center p-3">
+        <input className="border-none flex-1 focus:ring-0 outline-none" type="text" placeholder="Add a comment..." />
+        <button className="font-semibold text-blue-500 mr-2">Post</button>
+        <FaceSmileIcon className="button" />
+      </form>
     </div>
   );
 }
