@@ -32,6 +32,11 @@ export default function Post({ id, username, image, caption }: PostProps) {
         </div>
         <BookmarkIcon className="button"/>
       </div>
+
+      <p className="p-5 truncate">
+        <span className="font-bold mr-1">{username}</span>
+        {caption}
+      </p>
     </div>
   );
 }
