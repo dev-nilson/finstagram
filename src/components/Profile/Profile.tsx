@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { auth } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -8,8 +9,10 @@ export default function Profile() {
 
   return (
     <div className="flex items-center justify-between mt-14 ml-10">
-      <img
+      <Image
         className="h-16 w-16 rounded-full border p-[2px]"
+        width={200}
+        height={200}
         src={user?.photoURL}
         alt="profile"
       />
