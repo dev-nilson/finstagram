@@ -4,7 +4,9 @@ import {
   HeartIcon,
   BellIcon,
   PlusCircleIcon,
+  ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+import { auth } from "../../../firebase";
 import logo from "../../../public/logo.png";
 import icon from "../../../public/icon.png";
 
@@ -49,6 +51,10 @@ export default function Navbar() {
             </div>
           </div>
           <PlusCircleIcon className="nav-icon" />
+          <ArrowRightOnRectangleIcon
+            className="nav-icon"
+            onClick={() => auth.signOut()}
+          />
           <Bars3Icon className="h-7 w-7 md:hidden cursor-pointer" />
         </div>
       </div>
