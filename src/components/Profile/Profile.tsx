@@ -5,8 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 export default function Profile() {
   const [user, setUser] = useAuthState(auth);
 
-  console.log(user, "***");
-
   return (
     <div className="flex items-center justify-between mt-14 ml-10">
       <Image
