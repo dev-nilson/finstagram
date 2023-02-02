@@ -2,6 +2,7 @@ import { useRecoilState } from "recoil";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
 import { Fragment } from "react";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
@@ -44,6 +45,12 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 cursor-pointer">
+                  <PhotoIcon
+                    className="h-7 w-7 text-blue-600"
+                    aria-hidden="true"
+                  />
+                </div>
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title
