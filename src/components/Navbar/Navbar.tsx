@@ -1,4 +1,6 @@
+import { useRecoilState } from "recoil";
 import Image from "next/image";
+import { modalState } from "@/atoms/modalAtom";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import {
   HeartIcon,
@@ -11,6 +13,8 @@ import logo from "../../../public/logo.png";
 import icon from "../../../public/icon.png";
 
 export default function Navbar() {
+  const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
+
   return (
     <nav className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
@@ -50,7 +54,7 @@ export default function Navbar() {
               3
             </div>
           </div>
-          <PlusCircleIcon className="nav-icon" />
+          <PlusCircleIcon className="nav-icon" onClick={() => setIsModalOpen(true)} />
           <ArrowRightOnRectangleIcon
             className="nav-icon"
             onClick={() => auth.signOut()}

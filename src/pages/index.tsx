@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import Navbar from "@/components/Navbar/Navbar";
 import Feed from "@/components/Feed/Feed";
+import Modal from "@/components/Modal/Modal";
 import Login from "@/components/Login/Login";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default function Home() {
         <>
           <Navbar />
           <Feed />
+          <Modal />
         </>
       )}
     </div>
