@@ -68,42 +68,44 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
-                {expectationFile && (
+                {expectationFile ? (
                   <Image
-                    className="w-full object-contain"
+                    className="h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
                     width={200}
-                    height={200}
+                    height={50}
                     src={expectationFile}
                     alt="post image"
                   />
+                ) : (
+                  <div
+                    className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
+                    onClick={() => inputExpectationRef.current?.click()}
+                  >
+                    <FaceSmileIcon
+                      className="h-8 w-8 text-green-600"
+                      aria-hidden="true"
+                    />
+                  </div>
                 )}
-                {realityFile && (
+                {realityFile ? (
                   <Image
-                    className="w-full object-contain"
+                    className="mt-3 h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
                     width={200}
-                    height={200}
+                    height={50}
                     src={realityFile}
                     alt="post image"
                   />
+                ) : (
+                  <div
+                    className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
+                    onClick={() => inputRealityRef.current?.click()}
+                  >
+                    <FaceFrownIcon
+                      className="h-8 w-8 text-pink-600"
+                      aria-hidden="true"
+                    />
+                  </div>
                 )}
-                <div
-                  className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
-                  onClick={() => inputExpectationRef.current?.click()}
-                >
-                  <FaceSmileIcon
-                    className="h-8 w-8 text-green-600"
-                    aria-hidden="true"
-                  />
-                </div>
-                <div
-                  className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
-                  onClick={() => inputRealityRef.current?.click()}
-                >
-                  <FaceFrownIcon
-                    className="h-8 w-8 text-pink-600"
-                    aria-hidden="true"
-                  />
-                </div>
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title
