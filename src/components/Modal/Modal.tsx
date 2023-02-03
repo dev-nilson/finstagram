@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRecoilState } from "recoil";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
@@ -6,10 +7,20 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const inputFileRef = useRef<HTMLInputElement>(null);
 
-  const addImage = (e) => {};
+  const addImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+
+    if (!e.target.files) return;
+    reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload = (readerEvent) => {
+      if (!readerEvent.target) return;
+      setSelectedFile(readerEvent.target.result as string);
+    };
+  };
 
   return (
     <Transition.Root show={isModalOpen} as={Fragment}>
@@ -49,6 +60,15 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
+                {selectedFile && (
+                  <Image
+                    className="w-full object-contain"
+                    width={200}
+                    height={200}
+                    src={selectedFile}
+                    alt="post image"
+                  />
+                )}
                 <div
                   className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 cursor-pointer"
                   onClick={() => inputFileRef.current?.click()}
@@ -68,7 +88,12 @@ function Modal() {
                     </Dialog.Title>
 
                     <div>
-                      <input type="file" ref={inputFileRef} onChange={addImage} hidden />
+                      <input
+                        type="file"
+                        ref={inputFileRef}
+                        onChange={addImage}
+                        hidden
+                      />
                     </div>
 
                     <div className="mt-2">
