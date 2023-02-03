@@ -3,7 +3,11 @@ import { useRecoilState } from "recoil";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
 import { Fragment, useRef, useState } from "react";
-import { FaceSmileIcon, FaceFrownIcon } from "@heroicons/react/24/outline";
+import {
+  FaceSmileIcon,
+  FaceFrownIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
@@ -69,13 +73,24 @@ function Modal() {
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
                 {expectationFile ? (
-                  <Image
-                    className="h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
-                    width={200}
-                    height={50}
-                    src={expectationFile}
-                    alt="post image"
-                  />
+                  <div className="relative w-fit m-auto">
+                    <Image
+                      className="h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
+                      width={200}
+                      height={50}
+                      src={expectationFile}
+                      alt="post image"
+                    />
+                    <div
+                      className="h-5 w-5 rounded-full cursor-pointer absolute top-1 right-1 bg-red-500 items-center flex"
+                      onClick={() => setExpectationFile(null)}
+                    >
+                      <XMarkIcon
+                        className="h-4 w-4 m-auto text-white"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
                 ) : (
                   <div
                     className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
@@ -88,13 +103,24 @@ function Modal() {
                   </div>
                 )}
                 {realityFile ? (
-                  <Image
-                    className="mt-3 h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
-                    width={200}
-                    height={50}
-                    src={realityFile}
-                    alt="post image"
-                  />
+                  <div className="mt-3 relative w-fit m-auto">
+                    <Image
+                      className="h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
+                      width={200}
+                      height={50}
+                      src={realityFile}
+                      alt="post image"
+                    />
+                    <div
+                      className="h-5 w-5 rounded-full cursor-pointer absolute top-1 right-1 bg-red-500 items-center flex"
+                      onClick={() => setRealityFile(null)}
+                    >
+                      <XMarkIcon
+                        className="h-4 w-4 m-auto text-white"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
                 ) : (
                   <div
                     className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
