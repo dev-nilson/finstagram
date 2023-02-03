@@ -3,14 +3,19 @@ import { useRecoilState } from "recoil";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
 import { Fragment, useRef, useState } from "react";
-import { PhotoIcon } from "@heroicons/react/24/outline";
+import { FaceSmileIcon, FaceFrownIcon } from "@heroicons/react/24/outline";
 
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [expectationFile, setExpectationFile] = useState<string | null>(null);
+  const [realityFile, setRealityFile] = useState<string | null>(null);
+  const inputExpectationRef = useRef<HTMLInputElement>(null);
+  const inputRealityRef = useRef<HTMLInputElement>(null);
 
-  const addImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const addImage = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    variant: "expectation" | "reality"
+  ) => {
     const reader = new FileReader();
 
     if (!e.target.files) return;
@@ -18,7 +23,10 @@ function Modal() {
 
     reader.onload = (readerEvent) => {
       if (!readerEvent.target) return;
-      setSelectedFile(readerEvent.target.result as string);
+
+      const result = readerEvent.target.result as string;
+      if (variant === "expectation") setExpectationFile(result);
+      else setRealityFile(result);
     };
   };
 
@@ -60,21 +68,39 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
-                {selectedFile && (
+                {expectationFile && (
                   <Image
                     className="w-full object-contain"
                     width={200}
                     height={200}
-                    src={selectedFile}
+                    src={expectationFile}
+                    alt="post image"
+                  />
+                )}
+                {realityFile && (
+                  <Image
+                    className="w-full object-contain"
+                    width={200}
+                    height={200}
+                    src={realityFile}
                     alt="post image"
                   />
                 )}
                 <div
-                  className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 cursor-pointer"
-                  onClick={() => inputFileRef.current?.click()}
+                  className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
+                  onClick={() => inputExpectationRef.current?.click()}
                 >
-                  <PhotoIcon
-                    className="h-7 w-7 text-blue-600"
+                  <FaceSmileIcon
+                    className="h-8 w-8 text-green-600"
+                    aria-hidden="true"
+                  />
+                </div>
+                <div
+                  className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
+                  onClick={() => inputRealityRef.current?.click()}
+                >
+                  <FaceFrownIcon
+                    className="h-8 w-8 text-pink-600"
                     aria-hidden="true"
                   />
                 </div>
@@ -90,8 +116,14 @@ function Modal() {
                     <div>
                       <input
                         type="file"
-                        ref={inputFileRef}
-                        onChange={addImage}
+                        ref={inputExpectationRef}
+                        onChange={(e) => addImage(e, "expectation")}
+                        hidden
+                      />
+                      <input
+                        type="file"
+                        ref={inputRealityRef}
+                        onChange={(e) => addImage(e, "reality")}
                         hidden
                       />
                     </div>
