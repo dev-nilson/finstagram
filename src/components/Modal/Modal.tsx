@@ -15,6 +15,7 @@ function Modal() {
   const [realityFile, setRealityFile] = useState<string | null>(null);
   const inputExpectationRef = useRef<HTMLInputElement>(null);
   const inputRealityRef = useRef<HTMLInputElement>(null);
+  const inputCaptionRef = useRef<HTMLInputElement>(null);
 
   const addImage = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -160,6 +161,7 @@ function Modal() {
                       <input
                         className="border-none focus:ring-0 w-full text-center"
                         type="text"
+                        ref={inputCaptionRef}
                         placeholder="Enter caption..."
                       />
                     </div>
