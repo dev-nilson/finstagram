@@ -1,8 +1,11 @@
+import { Fragment, useRef, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { auth, db } from "../../../firebase";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
-import { Fragment, useRef, useState } from "react";
 import {
   FaceSmileIcon,
   FaceFrownIcon,
@@ -10,14 +13,30 @@ import {
 } from "@heroicons/react/24/outline";
 
 function Modal() {
+  const [user] = useAuthState(auth);
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
   const [expectationFile, setExpectationFile] = useState<string | null>(null);
   const [realityFile, setRealityFile] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const inputExpectationRef = useRef<HTMLInputElement>(null);
   const inputRealityRef = useRef<HTMLInputElement>(null);
   const inputCaptionRef = useRef<HTMLInputElement>(null);
 
-  const addImage = (
+  const uploadPost = async () => {
+    if (loading) return;
+    setLoading(true);
+
+    const docRef = await addDoc(collection(db, "posts"), {
+      username: user?.displayName,
+      caption: inputCaptionRef.current?.value,
+      avatar: user?.photoURL,
+      timestamp: serverTimestamp(),
+    });
+
+    console.log(docRef.id);
+  };
+
+  const displayImage = (
     e: React.ChangeEvent<HTMLInputElement>,
     variant: "expectation" | "reality"
   ) => {
@@ -146,13 +165,13 @@ function Modal() {
                       <input
                         type="file"
                         ref={inputExpectationRef}
-                        onChange={(e) => addImage(e, "expectation")}
+                        onChange={(e) => displayImage(e, "expectation")}
                         hidden
                       />
                       <input
                         type="file"
                         ref={inputRealityRef}
-                        onChange={(e) => addImage(e, "reality")}
+                        onChange={(e) => displayImage(e, "reality")}
                         hidden
                       />
                     </div>
@@ -171,6 +190,7 @@ function Modal() {
                     <button
                       type="button"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300"
+                      onClick={uploadPost}
                     >
                       Upload Post
                     </button>
