@@ -1,11 +1,15 @@
 import { useRecoilState } from "recoil";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
-import { Fragment } from "react";
+import { Fragment, useRef, useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const addImage = (e) => {};
 
   return (
     <Transition.Root show={isModalOpen} as={Fragment}>
@@ -45,7 +49,10 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
-                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 cursor-pointer">
+                <div
+                  className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 cursor-pointer"
+                  onClick={() => inputFileRef.current?.click()}
+                >
                   <PhotoIcon
                     className="h-7 w-7 text-blue-600"
                     aria-hidden="true"
@@ -61,7 +68,7 @@ function Modal() {
                     </Dialog.Title>
 
                     <div>
-                      <input type="file" hidden />
+                      <input type="file" ref={inputFileRef} onChange={addImage} hidden />
                     </div>
 
                     <div className="mt-2">
