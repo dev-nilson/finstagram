@@ -2,10 +2,18 @@ import { Fragment, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../../../firebase";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  snapshotEqual,
+  updateDoc,
+} from "firebase/firestore";
+import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
+import { auth, db, storage } from "../../../firebase";
 import {
   FaceSmileIcon,
   FaceFrownIcon,
@@ -33,7 +41,20 @@ function Modal() {
       timestamp: serverTimestamp(),
     });
 
-    console.log(docRef.id);
+    const imageRef = ref(storage, `posts/${docRef.id}/image`);
+    await uploadString(imageRef, expectationFile!, "data_url").then(
+      async (snapshot) => {
+        const downloadUrl = await getDownloadURL(imageRef);
+
+        await updateDoc(doc(db, "posts", docRef.id), {
+          expectedImage: downloadUrl,
+        });
+      }
+    );
+
+    setIsModalOpen(false);
+    setLoading(false);
+    setExpectationFile(null);
   };
 
   const displayImage = (
