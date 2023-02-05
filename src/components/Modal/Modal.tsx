@@ -19,6 +19,7 @@ import {
   FaceFrownIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import Spinner from "../Spinner/Spinner";
 
 function Modal() {
   const [user] = useAuthState(auth);
@@ -213,7 +214,7 @@ function Modal() {
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300"
                       onClick={uploadPost}
                     >
-                      Upload Post
+                      {loading ? <Spinner /> : "Upload Post"}
                     </button>
                   </div>
                 </div>
