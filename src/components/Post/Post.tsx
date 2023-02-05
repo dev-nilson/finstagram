@@ -19,8 +19,8 @@ export default function Post({ id, username, image, caption }: PostProps) {
           src={image}
           alt="post"
         />
-        <p className="flex-1">{username}</p>
-        <EllipsisHorizontalIcon className="h-5" />
+        <p className="flex-1 font-semibold">{username}</p>
+        <EllipsisHorizontalIcon className="h-5 button" />
       </div>
 
       <Image className="object-cover w-full" src={post} alt={caption} />
