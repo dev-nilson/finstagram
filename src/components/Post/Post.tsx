@@ -40,7 +40,18 @@ export default function Post({ id, username, image, caption }: PostProps) {
       </p>
 
       <form className="flex items-center p-3">
-        <input className="border-none flex-1 focus:ring-0 outline-none" type="text" placeholder="Add a comment..." />
+        <Image
+          className="h-10 w-10 rounded-full border p-[2px]"
+          width={200}
+          height={200}
+          src={user?.photoURL}
+          alt="profile"
+        />
+        <input
+          className="border-none flex-1 focus:ring-0 outline-none"
+          type="text"
+          placeholder="Add a comment..."
+        />
         <button className="font-semibold text-blue-500 mr-2">Post</button>
         <FaceSmileIcon className="button" />
       </form>
