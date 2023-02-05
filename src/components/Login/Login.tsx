@@ -2,7 +2,7 @@ import Image from "next/image";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase";
 import icon from "@/assets/google.jpg";
-import logo from "../../../public/logo.png";
+import logo from "@/assets/logo.png";
 
 function Login() {
   const googleAuth = new GoogleAuthProvider();
