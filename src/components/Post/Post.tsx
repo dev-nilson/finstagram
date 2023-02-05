@@ -1,4 +1,5 @@
-import post from "@/assets/post.jpg";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase";
 import {
   BookmarkIcon,
   ChatBubbleOvalLeftIcon,
@@ -8,9 +9,12 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
 import { PostProps } from "@/typescript/types";
+import post from "@/assets/post.jpg";
 import Image from "next/image";
 
 export default function Post({ id, username, image, caption }: PostProps) {
+  const [user, setUser] = useAuthState(auth);
+
   return (
     <div className="bg-white my-7 border rounded-md">
       <div className="flex items-center p-5">
