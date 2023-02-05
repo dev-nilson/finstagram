@@ -34,7 +34,7 @@ export default function Post({ id, username, image, caption }: PostProps) {
         <BookmarkIcon className="button" />
       </div>
 
-      <p className="p-5 truncate">
+      <p className="px-5 py-2 truncate">
         <span className="font-bold mr-1">{username}</span>
         {caption}
       </p>
