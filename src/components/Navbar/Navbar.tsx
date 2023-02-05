@@ -9,8 +9,8 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { auth } from "../../../firebase";
-import logo from "../../../public/logo.png";
-import icon from "../../../public/icon.png";
+import logo from "@/assets/logo.png";
+import icon from "@/assets/icon.png";
 
 export default function Navbar() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
@@ -54,7 +54,10 @@ export default function Navbar() {
               3
             </div>
           </div>
-          <PlusCircleIcon className="nav-icon" onClick={() => setIsModalOpen(true)} />
+          <PlusCircleIcon
+            className="nav-icon"
+            onClick={() => setIsModalOpen(true)}
+          />
           <ArrowRightOnRectangleIcon
             className="nav-icon"
             onClick={() => auth.signOut()}
