@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useMemo } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
@@ -31,9 +31,19 @@ function Modal() {
   const inputRealityRef = useRef<HTMLInputElement>(null);
   const inputCaptionRef = useRef<HTMLInputElement>(null);
 
+  const isValidPost = () => {
+    return (
+      inputExpectationRef.current &&
+      inputRealityRef.current &&
+      inputCaptionRef.current
+    );
+  };
+
   const uploadPost = async () => {
     if (loading) return;
     setLoading(true);
+
+    if (isValidPost()) return;
 
     const docRef = await addDoc(collection(db, "posts"), {
       username: user?.displayName,
