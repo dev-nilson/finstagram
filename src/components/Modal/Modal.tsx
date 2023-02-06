@@ -188,12 +188,14 @@ function Modal() {
                         type="file"
                         ref={inputExpectationRef}
                         onChange={(e) => displayImage(e, "expectation")}
+                        accept="image/*"
                         hidden
                       />
                       <input
                         type="file"
                         ref={inputRealityRef}
                         onChange={(e) => displayImage(e, "reality")}
+                        accept="image/*"
                         hidden
                       />
                     </div>
