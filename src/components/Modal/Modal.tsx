@@ -31,11 +31,11 @@ function Modal() {
   const inputRealityRef = useRef<HTMLInputElement>(null);
   const inputCaptionRef = useRef<HTMLInputElement>(null);
 
-  const isValidPost = () => {
+  const isIncompletePost = () => {
     return (
-      inputExpectationRef.current &&
-      inputRealityRef.current &&
-      inputCaptionRef.current
+      inputExpectationRef.current?.value === "" &&
+      inputRealityRef.current?.value === "" &&
+      inputCaptionRef.current?.value === ""
     );
   };
 
@@ -43,7 +43,7 @@ function Modal() {
     if (loading) return;
     setLoading(true);
 
-    if (isValidPost()) return;
+    if (isIncompletePost()) return;
 
     const docRef = await addDoc(collection(db, "posts"), {
       username: user?.displayName,
