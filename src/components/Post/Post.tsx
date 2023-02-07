@@ -26,10 +26,12 @@ export default function Post({
   image,
   caption,
   expected,
+  reality,
 }: PostProps) {
-  const [user, setUser] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [likes, setLikes] = useState<any>([]);
   const [hasLiked, setHasLiked] = useState(false);
+  const [showNext, setShowNext] = useState(true);
 
   useEffect(() => {
     return onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
@@ -67,10 +69,17 @@ export default function Post({
       </div>
 
       <Image
-        className="object-cover w-full"
+        className={`object-cover w-full`}
         width={400}
         height={400}
         src={expected}
+        alt={caption}
+      />
+      <Image
+        className={`object-cover w-full`}
+        width={400}
+        height={400}
+        src={reality}
         alt={caption}
       />
 
@@ -91,7 +100,9 @@ export default function Post({
       </div>
 
       <p className="px-5 py-2 truncate">
-        {likes.length > 0 && <p className="font-bold my-2">{likes.length} likes</p>}
+        {likes.length > 0 && (
+          <p className="font-bold my-2">{likes.length} likes</p>
+        )}
         <span className="font-semibold mr-1">{username}</span>
         {caption}
       </p>
