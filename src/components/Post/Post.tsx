@@ -16,6 +16,7 @@ import {
   HeartIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
+import HeartIconFilled from "@heroicons/react/24/solid/HeartIcon";
 import { PostProps } from "@/typescript/types";
 import Image from "next/image";
 
@@ -66,7 +67,14 @@ export default function Post({
 
       <div className="flex justify-between px-4 pt-4">
         <div className="flex space-x-3">
-          <HeartIcon className="button" onClick={likePost} />
+          {hasLiked ? (
+            <HeartIconFilled
+              className="button text-red-500"
+              onClick={likePost}
+            />
+          ) : (
+            <HeartIcon className="button" onClick={likePost} />
+          )}
           <ChatBubbleOvalLeftIcon className="button" />
           <PaperAirplaneIcon className="button" />
         </div>
