@@ -19,4 +19,5 @@ export type PostProps = {
   image: string;
   caption: string;
   expected: string;
+  reality: string;
 };

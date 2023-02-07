@@ -24,7 +24,8 @@ export default function Posts() {
           username={post.data().username}
           image={post.data().avatar}
           caption={post.data().caption}
-          expected={post.data().expectedImage}
+          expected={post.data().expected}
+          reality={post.data().reality}
         />
       ))}
     </div>
