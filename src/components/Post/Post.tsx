@@ -35,23 +35,23 @@ export default function Post({
     return onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
       setLikes(snapshot.docs);
     });
-  }, [db, id]);
+  }, [id]);
 
   useEffect(() => {
     setHasLiked(likes.findIndex((like) => like.id === user?.uid) !== -1);
-  }, [likes]);
+  }, [likes, user?.uid]);
 
   const likePost = async () => {
+    if (!user?.uid) return;
+
     if (hasLiked) {
-      await deleteDoc(doc(db, "posts", id, "likes", user?.uid!));
+      await deleteDoc(doc(db, "posts", id, "likes", user.uid));
     } else {
-      await setDoc(doc(db, "posts", id, "likes", user?.uid!), {
+      await setDoc(doc(db, "posts", id, "likes", user.uid), {
         username: user?.displayName,
       });
     }
   };
-
-  console.log(image, expected);
 
   return (
     <div className="bg-white my-7 border rounded-md">
@@ -101,7 +101,7 @@ export default function Post({
           className="h-10 w-10 rounded-full border p-[2px]"
           width={200}
           height={200}
-          src={user?.photoURL}
+          src={user?.photoURL!}
           alt="profile"
         />
         <input
