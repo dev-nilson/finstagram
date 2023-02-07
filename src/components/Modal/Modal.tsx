@@ -7,7 +7,6 @@ import {
   collection,
   doc,
   serverTimestamp,
-  snapshotEqual,
   updateDoc,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
