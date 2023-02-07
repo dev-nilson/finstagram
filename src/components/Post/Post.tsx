@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, doc, onSnapshot, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../../firebase";
 import {
@@ -29,6 +29,12 @@ export default function Post({
     });
   }, [db, id]);
 
+  const toggleLike = async () => {
+    await setDoc(doc(db, "posts", id, "likes", user?.uid!), {
+      username: user?.displayName,
+    });
+  };
+
   return (
     <div className="bg-white my-7 border rounded-md">
       <div className="flex items-center p-5">
@@ -45,7 +51,7 @@ export default function Post({
 
       <div className="flex justify-between px-4 pt-4">
         <div className="flex space-x-3">
-          <HeartIcon className="button" />
+          <HeartIcon className="button" onClick={toggleLike} />
           <ChatBubbleOvalLeftIcon className="button" />
           <PaperAirplaneIcon className="button" />
         </div>
