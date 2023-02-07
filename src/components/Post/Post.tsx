@@ -38,15 +38,14 @@ export default function Post({
   }, [id]);
 
   useEffect(() => {
-    setHasLiked(likes.findIndex((like) => like.id === user?.uid) !== -1);
+    setHasLiked(likes.findIndex((like: any) => like.id === user?.uid) !== -1);
   }, [likes, user?.uid]);
 
   const likePost = async () => {
     if (!user?.uid) return;
 
-    if (hasLiked) {
-      await deleteDoc(doc(db, "posts", id, "likes", user.uid));
-    } else {
+    if (hasLiked) await deleteDoc(doc(db, "posts", id, "likes", user.uid));
+    else {
       await setDoc(doc(db, "posts", id, "likes", user.uid), {
         username: user?.displayName,
       });
@@ -92,7 +91,8 @@ export default function Post({
       </div>
 
       <p className="px-5 py-2 truncate">
-        <span className="font-bold mr-1">{username}</span>
+        {likes.length > 0 && <p className="font-bold my-2">{likes.length} likes</p>}
+        <span className="font-semibold mr-1">{username}</span>
         {caption}
       </p>
 
