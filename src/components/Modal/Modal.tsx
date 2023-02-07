@@ -27,23 +27,23 @@ function Modal() {
   const [expectationFile, setExpectationFile] = useState<string | null>(null);
   const [realityFile, setRealityFile] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [incomplete, setIncomplete] = useState<boolean>(false);
   const inputExpectationRef = useRef<HTMLInputElement>(null);
   const inputRealityRef = useRef<HTMLInputElement>(null);
   const inputCaptionRef = useRef<HTMLInputElement>(null);
 
-  const isIncompletePost = () => {
-    return (
-      inputExpectationRef.current?.value === "" &&
-      inputRealityRef.current?.value === "" &&
-      inputCaptionRef.current?.value === ""
-    );
-  };
+  const isIncompletePost = () =>
+    !inputExpectationRef.current?.files?.length ||
+    !inputRealityRef.current?.files?.length;
 
   const uploadPost = async () => {
+    if (isIncompletePost()) {
+      setIncomplete(true);
+      return;
+    }
+
     if (loading) return;
     setLoading(true);
-
-    if (isIncompletePost()) return;
 
     const docRef = await addDoc(collection(db, "posts"), {
       username: user?.displayName,
@@ -65,6 +65,7 @@ function Modal() {
 
     setIsModalOpen(false);
     setLoading(false);
+    setIncomplete(false);
     setExpectationFile(null);
     setRealityFile(null);
   };
@@ -146,13 +147,14 @@ function Modal() {
                   </div>
                 ) : (
                   <div
-                    className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
+                    className="mx-auto flex items-center justify-center h-12 rounded-md bg-green-100 cursor-pointer"
                     onClick={() => inputExpectationRef.current?.click()}
                   >
                     <FaceSmileIcon
                       className="h-8 w-8 text-green-600"
                       aria-hidden="true"
                     />
+                    <span>&nbsp; Click to upload expectation</span>
                   </div>
                 )}
                 {realityFile ? (
@@ -176,24 +178,18 @@ function Modal() {
                   </div>
                 ) : (
                   <div
-                    className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
+                    className="mt-3 mx-auto flex items-center justify-center h-12 rounded-md bg-pink-100 cursor-pointer"
                     onClick={() => inputRealityRef.current?.click()}
                   >
                     <FaceFrownIcon
                       className="h-8 w-8 text-pink-600"
                       aria-hidden="true"
                     />
+                    <span>&nbsp; Click to upload reality</span>
                   </div>
                 )}
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg leading-6 font-medium text-gray-900"
-                    >
-                      Upload Pictures
-                    </Dialog.Title>
-
                     <div>
                       <input
                         type="file"
@@ -229,6 +225,11 @@ function Modal() {
                     >
                       {loading ? <Spinner /> : "Upload Post"}
                     </button>
+                    {incomplete && (
+                      <p className="text-center -mb-2 mt-2 text-sm text-red-700">
+                        Please upload both pictures
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
