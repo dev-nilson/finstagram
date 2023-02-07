@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   collection,
   deleteDoc,
@@ -18,7 +19,6 @@ import {
 } from "@heroicons/react/24/outline";
 import HeartIconFilled from "@heroicons/react/24/solid/HeartIcon";
 import { PostProps } from "@/typescript/types";
-import Image from "next/image";
 
 export default function Post({
   id,
@@ -51,11 +51,15 @@ export default function Post({
     }
   };
 
+  console.log(image, expected);
+
   return (
     <div className="bg-white my-7 border rounded-md">
       <div className="flex items-center p-5">
-        <img
+        <Image
           className="rounded-full h-12 w-12 object-contain border p-1 mr-3"
+          width={200}
+          height={200}
           src={image}
           alt="post"
         />
@@ -63,7 +67,13 @@ export default function Post({
         <EllipsisHorizontalIcon className="h-5 button" />
       </div>
 
-      <img className="object-cover w-full" src={expected} alt={caption} />
+      <Image
+        className="object-cover w-full"
+        width={400}
+        height={400}
+        src={expected}
+        alt={caption}
+      />
 
       <div className="flex justify-between px-4 pt-4">
         <div className="flex space-x-3">
