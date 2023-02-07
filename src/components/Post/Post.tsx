@@ -31,7 +31,7 @@ export default function Post({
   const [user] = useAuthState(auth);
   const [likes, setLikes] = useState<any>([]);
   const [hasLiked, setHasLiked] = useState(false);
-  const [showNext, setShowNext] = useState(true);
+  const [showNext, setShowNext] = useState(false);
 
   useEffect(() => {
     return onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
@@ -68,20 +68,22 @@ export default function Post({
         <EllipsisHorizontalIcon className="h-5 button" />
       </div>
 
-      <Image
-        className={`object-cover w-full`}
-        width={400}
-        height={400}
-        src={expected}
-        alt={caption}
-      />
-      <Image
-        className={`object-cover w-full`}
-        width={400}
-        height={400}
-        src={reality}
-        alt={caption}
-      />
+      <div className="relative w-1/2 mx-auto">
+        <Image
+          className={`object-cover w-full ${showNext ? "hidden" : "block"}`}
+          width={400}
+          height={400}
+          src={expected}
+          alt={caption}
+        />
+        <Image
+          className={`object-cover w-full ${showNext ? "block" : "hidden"}`}
+          width={400}
+          height={400}
+          src={reality}
+          alt={caption}
+        />
+      </div>
 
       <div className="flex justify-between px-4 pt-4">
         <div className="flex space-x-3">
