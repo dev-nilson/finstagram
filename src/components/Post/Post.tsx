@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { collection, doc, onSnapshot, setDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../../firebase";
 import {
@@ -22,6 +28,7 @@ export default function Post({
 }: PostProps) {
   const [user, setUser] = useAuthState(auth);
   const [likes, setLikes] = useState<any>([]);
+  const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(() => {
     return onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
@@ -29,10 +36,18 @@ export default function Post({
     });
   }, [db, id]);
 
-  const toggleLike = async () => {
-    await setDoc(doc(db, "posts", id, "likes", user?.uid!), {
-      username: user?.displayName,
-    });
+  useEffect(() => {
+    setHasLiked(likes.findIndex((like) => like.id === user?.uid) !== -1);
+  }, [likes]);
+
+  const likePost = async () => {
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", user?.uid!));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", user?.uid!), {
+        username: user?.displayName,
+      });
+    }
   };
 
   return (
@@ -51,7 +66,7 @@ export default function Post({
 
       <div className="flex justify-between px-4 pt-4">
         <div className="flex space-x-3">
-          <HeartIcon className="button" onClick={toggleLike} />
+          <HeartIcon className="button" onClick={likePost} />
           <ChatBubbleOvalLeftIcon className="button" />
           <PaperAirplaneIcon className="button" />
         </div>
