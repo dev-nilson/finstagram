@@ -9,10 +9,9 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
 import { PostProps } from "@/typescript/types";
-import post from "@/assets/post.jpg";
 import Image from "next/image";
 
-export default function Post({ id, username, image, caption }: PostProps) {
+export default function Post({ id, username, image, caption, expected }: PostProps) {
   const [user, setUser] = useAuthState(auth);
 
   return (
@@ -27,7 +26,7 @@ export default function Post({ id, username, image, caption }: PostProps) {
         <EllipsisHorizontalIcon className="h-5 button" />
       </div>
 
-      <Image className="object-cover w-full" src={post} alt={caption} />
+      <img className="object-cover w-full" src={expected} alt={caption} />
 
       <div className="flex justify-between px-4 pt-4">
         <div className="flex space-x-3">

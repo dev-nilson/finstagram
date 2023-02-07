@@ -18,4 +18,5 @@ export type PostProps = {
   username: string;
   image: string;
   caption: string;
+  expected: string;
 };
