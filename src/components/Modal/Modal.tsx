@@ -51,13 +51,24 @@ function Modal() {
       timestamp: serverTimestamp(),
     });
 
-    const imageRef = ref(storage, `posts/${docRef.id}/image`);
-    await uploadString(imageRef, expectationFile!, "data_url").then(
+    const expectedRef = ref(storage, `posts/${docRef.id}/expected`);
+    await uploadString(expectedRef, expectationFile!, "data_url").then(
       async (snapshot) => {
-        const downloadUrl = await getDownloadURL(imageRef);
+        const downloadUrl = await getDownloadURL(expectedRef);
 
         await updateDoc(doc(db, "posts", docRef.id), {
-          expectedImage: downloadUrl,
+          expected: downloadUrl,
+        });
+      }
+    );
+
+    const realityRef = ref(storage, `posts/${docRef.id}/reality`);
+    await uploadString(realityRef, realityFile!, "data_url").then(
+      async (snapshot) => {
+        const downloadUrl = await getDownloadURL(realityRef);
+
+        await updateDoc(doc(db, "posts", docRef.id), {
+          reality: downloadUrl,
         });
       }
     );
