@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import {
   BookmarkIcon,
   ChatBubbleOvalLeftIcon,
@@ -11,8 +13,21 @@ import {
 import { PostProps } from "@/typescript/types";
 import Image from "next/image";
 
-export default function Post({ id, username, image, caption, expected }: PostProps) {
+export default function Post({
+  id,
+  username,
+  image,
+  caption,
+  expected,
+}: PostProps) {
   const [user, setUser] = useAuthState(auth);
+  const [likes, setLikes] = useState<any>([]);
+
+  useEffect(() => {
+    return onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
+      setLikes(snapshot.docs);
+    });
+  }, [db, id]);
 
   return (
     <div className="bg-white my-7 border rounded-md">
