@@ -66,6 +66,7 @@ function Modal() {
     setIsModalOpen(false);
     setLoading(false);
     setExpectationFile(null);
+    setRealityFile(null);
   };
 
   const displayImage = (
