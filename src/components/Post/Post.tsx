@@ -62,7 +62,7 @@ export default function Post({
     <div className="bg-white my-7 border rounded-md">
       <div className="flex items-center p-5">
         <Image
-          className="rounded-full h-12 w-12 object-contain border p-1 mr-3"
+          className="rounded-full h-10 w-10 object-contain mr-3"
           width={200}
           height={200}
           src={image}
@@ -81,7 +81,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 mr-2"
+            className="w-8 h-8 mr-1"
           >
             <path
               fill-rule="evenodd"
@@ -98,7 +98,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 ml-2"
+            className="w-8 h-8 ml-1"
           >
             <path
               fill-rule="evenodd"
@@ -108,14 +108,14 @@ export default function Post({
           </svg>
         </button>
         <Image
-          className={`p-5 object-cover w-full ${showNext ? "hidden" : "block"}`}
+          className={`px-10 object-cover w-full ${showNext ? "hidden" : "block"}`}
           width={400}
           height={400}
           src={expected}
           alt={caption}
         />
         <Image
-          className={`p-5 object-cover w-full ${showNext ? "block" : "hidden"}`}
+          className={`px-10 object-cover w-full ${showNext ? "block" : "hidden"}`}
           width={400}
           height={400}
           src={reality}
@@ -149,7 +149,7 @@ export default function Post({
 
       <form className="flex items-center p-3">
         <Image
-          className="h-10 w-10 rounded-full border p-[2px]"
+          className="h-8 w-8 rounded-full"
           width={200}
           height={200}
           src={user?.photoURL!}
