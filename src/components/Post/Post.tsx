@@ -72,7 +72,7 @@ export default function Post({
         <EllipsisHorizontalIcon className="h-5 button" />
       </div>
 
-      <div className="relative w-1/2 mx-auto">
+      <div className="relative mx-auto">
         <button
           className="absolute right-0 top-1/2"
           onClick={() => setShowNext(!showNext)}
@@ -81,7 +81,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8"
+            className="w-8 h-8 mr-2"
           >
             <path
               fill-rule="evenodd"
@@ -98,7 +98,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8"
+            className="w-8 h-8 ml-2"
           >
             <path
               fill-rule="evenodd"
@@ -108,14 +108,14 @@ export default function Post({
           </svg>
         </button>
         <Image
-          className={`object-cover w-full ${showNext ? "hidden" : "block"}`}
+          className={`p-5 object-cover w-full ${showNext ? "hidden" : "block"}`}
           width={400}
           height={400}
           src={expected}
           alt={caption}
         />
         <Image
-          className={`object-cover w-full ${showNext ? "block" : "hidden"}`}
+          className={`p-5 object-cover w-full ${showNext ? "block" : "hidden"}`}
           width={400}
           height={400}
           src={reality}
