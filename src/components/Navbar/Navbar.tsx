@@ -1,19 +1,27 @@
-import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRecoilState } from "recoil";
+import { collection, onSnapshot } from "firebase/firestore";
 import { modalState } from "@/atoms/modalAtom";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import {
-  HeartIcon,
   BellIcon,
   PlusCircleIcon,
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import logo from "@/assets/logo.png";
 import icon from "@/assets/icon.png";
 
 export default function Navbar() {
+  const [totalPosts, setTotalPosts] = useState(0);
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
+
+  useEffect(() => {
+    return onSnapshot(collection(db, "posts"), (snapshot) => {
+      setTotalPosts(snapshot.docs.length);
+    });
+  }, []);
 
   return (
     <nav className="shadow-sm border-b bg-white sticky top-0 z-50">
@@ -47,17 +55,16 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex items-center justify-end space-x-4">
-          <HeartIcon className="nav-icon" />
-          <div className="relative nav-icon">
-            <BellIcon className="nav-icon" />
-            <div className="absolute -top-2 -right-2 text-sm w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">
-              3
-            </div>
-          </div>
           <PlusCircleIcon
             className="nav-icon"
             onClick={() => setIsModalOpen(true)}
           />
+          <div className="relative nav-icon">
+            <BellIcon className="nav-icon" />
+            <div className="absolute -top-2 -right-2 text-sm w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">
+              {totalPosts}
+            </div>
+          </div>
           <ArrowRightOnRectangleIcon
             className="nav-icon"
             onClick={() => auth.signOut()}
