@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { DocumentData, DocumentSnapshot, collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Post from "../Post/Post";
 
 export default function Posts() {
-  const [posts, setPosts] = useState<any>([]);
+  const [posts, setPosts] = useState<DocumentSnapshot[]>([]);
 
   useEffect(() => {
     return onSnapshot(
@@ -13,11 +13,11 @@ export default function Posts() {
         setPosts(snapshot.docs);
       }
     );
-  }, [db]);
+  }, []);
 
   return (
     <div>
-      {posts.map((post) => (
+      {posts.map((post: DocumentData) => (
         <Post
           key={post.id}
           id={post.id}
