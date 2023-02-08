@@ -14,8 +14,7 @@ import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
 import { auth, db, storage } from "../../../firebase";
 import {
-  FaceSmileIcon,
-  FaceFrownIcon,
+  ArrowUpTrayIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Spinner from "../Spinner/Spinner";
@@ -157,14 +156,13 @@ function Modal() {
                   </div>
                 ) : (
                   <div
-                    className="mx-auto flex items-center justify-center h-12 rounded-md bg-green-100 cursor-pointer"
+                    className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
                     onClick={() => inputExpectationRef.current?.click()}
                   >
-                    <FaceSmileIcon
+                    <ArrowUpTrayIcon
                       className="h-8 w-8 text-green-600"
                       aria-hidden="true"
                     />
-                    <span>&nbsp; Click to upload expectation</span>
                   </div>
                 )}
                 {realityFile ? (
@@ -188,14 +186,13 @@ function Modal() {
                   </div>
                 ) : (
                   <div
-                    className="mt-3 mx-auto flex items-center justify-center h-12 rounded-md bg-pink-100 cursor-pointer"
+                    className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
                     onClick={() => inputRealityRef.current?.click()}
                   >
-                    <FaceFrownIcon
+                    <ArrowUpTrayIcon
                       className="h-8 w-8 text-pink-600"
                       aria-hidden="true"
                     />
-                    <span>&nbsp; Click to upload reality</span>
                   </div>
                 )}
                 <div>
