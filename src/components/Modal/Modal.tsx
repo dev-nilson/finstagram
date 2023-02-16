@@ -13,10 +13,7 @@ import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { Transition, Dialog } from "@headlessui/react";
 import { modalState } from "@/atoms/modalAtom";
 import { auth, db, storage } from "../../../firebase";
-import {
-  ArrowUpTrayIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowUpTrayIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Spinner from "../Spinner/Spinner";
 
 function Modal() {
@@ -135,6 +132,13 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
+                <h4 className="text-center mb-5">
+                  Upload your{" "}
+                  <mark className="text-green-600 bg-green-100">reality</mark>{" "}
+                  vs{" "}
+                  <mark className="text-pink-600 bg-pink-100">expectation</mark>{" "}
+                  picture and show us what really happened
+                </h4>
                 {expectationFile ? (
                   <div className="relative w-fit m-auto">
                     <Image
