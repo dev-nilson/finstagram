@@ -17,10 +17,6 @@ import {
   HeartIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
-import {
-  ArrowRightCircleIcon,
-  ArrowLeftCircleIcon,
-} from "@heroicons/react/24/solid";
 import HeartIconFilled from "@heroicons/react/24/solid/HeartIcon";
 import { PostProps } from "@/typescript/types";
 
@@ -81,7 +77,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 mr-1 text-gray-300 hover:text-gray-400 transition duration-100 ease-out"
+            className="w-8 h-8 mr-2 text-white opacity-50 hover:opacity-90 transition duration-100 ease-out"
           >
             <path
               fill-rule="evenodd"
@@ -98,7 +94,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 ml-1  text-gray-300 hover:text-gray-400 transition duration-100 ease-out"
+            className="w-8 h-8 ml-2  text-white opacity-50 hover:opacity-90 transition duration-100 ease-out"
           >
             <path
               fill-rule="evenodd"
@@ -108,14 +104,14 @@ export default function Post({
           </svg>
         </button>
         <Image
-          className={`px-10 object-cover w-full ${showNext ? "hidden" : "block"}`}
+          className={`object-cover w-full ${showNext ? "hidden" : "block"}`}
           width={400}
           height={400}
           src={expected}
           alt={caption}
         />
         <Image
-          className={`px-10 object-cover w-full ${showNext ? "block" : "hidden"}`}
+          className={`object-cover w-full ${showNext ? "block" : "hidden"}`}
           width={400}
           height={400}
           src={reality}
