@@ -69,7 +69,6 @@ export default function Navbar() {
             className="nav-icon"
             onClick={() => auth.signOut()}
           />
-          <Bars3Icon className="h-7 w-7 md:hidden cursor-pointer" />
         </div>
       </div>
     </nav>
