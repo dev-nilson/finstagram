@@ -11,11 +11,14 @@ export default function Profile() {
         className="h-16 w-16 rounded-full border p-[2px]"
         width={200}
         height={200}
-        src={user?.photoURL}
+        src={
+          user?.photoURL ||
+          "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?mode=crop&mcb=5f884e47a7424cfe86340315ccaafed0"
+        }
         alt="profile"
       />
       <div className="flex-1 mx-4">
-        <h2 className="font-semibold">{user?.email}</h2>
+        <h2 className="font-semibold">{user?.email?.split("@")[0]}</h2>
         <h3 className="text-sm text-gray-400">{user?.displayName}</h3>
       </div>
       <button
