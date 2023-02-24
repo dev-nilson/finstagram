@@ -132,6 +132,9 @@ function Modal() {
           >
             <div className="inline-block align-bottom bg-white rounded-md px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:pb-6">
               <div>
+                <div className="text-center pb-3 border-b-[1px] mb-4 border-gray-300">
+                  <h1 className="font-semibold text-md">Create new post</h1>
+                </div>
                 <h4 className="text-center mb-5">
                   Upload your{" "}
                   <mark className="text-green-600 bg-green-100">reality</mark>{" "}
@@ -228,7 +231,7 @@ function Modal() {
                     </div>
                   </div>
 
-                  <div className="mt-5 sm:mt-6">
+                  <div className="mt-5 sm:mt-6 -mb-2">
                     <button
                       type="button"
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300"

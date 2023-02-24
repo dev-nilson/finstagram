@@ -77,7 +77,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 mr-2 text-white opacity-50 hover:opacity-90 transition duration-100 ease-out"
+            className="w-8 h-8 mr-2 text-gray-300 opacity-75 hover:opacity-90 transition duration-100 ease-out"
           >
             <path
               fill-rule="evenodd"
@@ -94,7 +94,7 @@ export default function Post({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 ml-2  text-white opacity-50 hover:opacity-90 transition duration-100 ease-out"
+            className="w-8 h-8 ml-2 text-gray-300 opacity-75 hover:opacity-90 transition duration-100 ease-out"
           >
             <path
               fill-rule="evenodd"
