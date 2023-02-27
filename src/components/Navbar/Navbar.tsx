@@ -26,18 +26,10 @@ export default function Navbar() {
   return (
     <nav className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
-        <div className="relative hidden lg:inline-grid w-20 cursor-pointer">
+        <div className="relative w-28 cursor-pointer">
           <Image
             src={logo}
             alt="logo"
-            fill={true}
-            style={{ objectFit: "contain" }}
-          />
-        </div>
-        <div className="relative inline-grid lg:hidden w-6 flex-shrink-0 cursor-pointer">
-          <Image
-            src={icon}
-            alt="icon"
             fill={true}
             style={{ objectFit: "contain" }}
           />
