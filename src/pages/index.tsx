@@ -26,7 +26,6 @@ export default function Home() {
           <Navbar />
           <Feed />
           <Modal />
-          <p className="text-center m-2">Made with 💜 by Denilson Lemus</p>
         </>
       )}
     </div>
