@@ -9,7 +9,6 @@ export type User = {
 };
 
 export type StoryProps = {
-  image: string;
   username: string;
 };
 
