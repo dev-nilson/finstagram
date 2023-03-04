@@ -143,7 +143,7 @@ export default function Post({
         {caption}
       </p>
 
-      <form className="flex items-center p-3">
+      <div className="flex items-center p-3">
         <Image
           className="h-8 w-8 rounded-full"
           width={200}
@@ -158,7 +158,7 @@ export default function Post({
         />
         <button className="font-semibold text-blue-500 mr-2">Post</button>
         <FaceSmileIcon className="button" />
-      </form>
+      </div>
     </div>
   );
 }

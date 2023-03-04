@@ -8,7 +8,7 @@ function Login() {
   const googleAuth = new GoogleAuthProvider();
 
   const login = async () => {
-    signInWithPopup(auth, googleAuth).then((res) => console.log(res));
+    await signInWithPopup(auth, googleAuth).then((res) => console.log(res));
   };
 
   return (
