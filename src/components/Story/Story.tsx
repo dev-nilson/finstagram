@@ -6,12 +6,12 @@ export default function Story({ username }: StoryProps) {
   return (
     <div>
       <Avatar
-        className="border-red-500 border-2 object-contain cursor-pointer hover:scale-110 transition transform duration-200 ease-out"
+        className="border-gray-300 border-2 object-contain cursor-pointer hover:scale-110 transition transform duration-200 ease-out"
         sx={{ width: 55, height: 55, bgcolor: getRandomColor() }}
       >
-        {username.toUpperCase()}
+        {username[0].toUpperCase()}
       </Avatar>
-      {/* <p className="text-sm w-14 truncate text-center">{username}</p> */}
+      <p className="text-sm w-14 truncate text-center">{username}</p>
     </div>
   );
 }
