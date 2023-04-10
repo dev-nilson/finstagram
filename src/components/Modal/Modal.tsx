@@ -137,11 +137,43 @@ function Modal() {
                 </div>
                 <h4 className="text-center mb-5">
                   Upload your{" "}
-                  <mark className="text-green-600 bg-green-100">reality</mark>{" "}
-                  vs{" "}
-                  <mark className="text-pink-600 bg-pink-100">expectation</mark>{" "}
+                  <mark className="text-green-600 bg-green-100">
+                    expectation
+                  </mark>{" "}
+                  vs <mark className="text-pink-600 bg-pink-100">reality</mark>{" "}
                   picture and show us what really happened
                 </h4>
+                {realityFile ? (
+                  <div className="relative w-fit m-auto">
+                    <Image
+                      className="h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
+                      width={200}
+                      height={50}
+                      src={realityFile}
+                      alt="post image"
+                    />
+                    <div
+                      className="h-5 w-5 rounded-full cursor-pointer absolute top-1 right-1 bg-red-500 items-center flex"
+                      onClick={() => setRealityFile(null)}
+                    >
+                      <XMarkIcon
+                        className="h-4 w-4 m-auto text-white"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
+                    onClick={() => inputRealityRef.current?.click()}
+                    title="Expectation"
+                  >
+                    <ArrowUpTrayIcon
+                      className="h-8 w-8 text-green-600"
+                      aria-hidden="true"
+                    />
+                  </div>
+                )}
                 {expectationFile ? (
                   <div className="relative w-fit m-auto">
                     <Image
@@ -163,38 +195,9 @@ function Modal() {
                   </div>
                 ) : (
                   <div
-                    className="mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-green-100 cursor-pointer"
-                    onClick={() => inputExpectationRef.current?.click()}
-                  >
-                    <ArrowUpTrayIcon
-                      className="h-8 w-8 text-green-600"
-                      aria-hidden="true"
-                    />
-                  </div>
-                )}
-                {realityFile ? (
-                  <div className="mt-3 relative w-fit m-auto">
-                    <Image
-                      className="h-[100px] w-[100px] m-auto object-contain p-1 border rounded-md"
-                      width={200}
-                      height={50}
-                      src={realityFile}
-                      alt="post image"
-                    />
-                    <div
-                      className="h-5 w-5 rounded-full cursor-pointer absolute top-1 right-1 bg-red-500 items-center flex"
-                      onClick={() => setRealityFile(null)}
-                    >
-                      <XMarkIcon
-                        className="h-4 w-4 m-auto text-white"
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div
                     className="mt-3 mx-auto flex items-center justify-center h-12 w-12 rounded-md bg-pink-100 cursor-pointer"
-                    onClick={() => inputRealityRef.current?.click()}
+                    onClick={() => inputExpectationRef.current?.click()}
+                    title="Reality"
                   >
                     <ArrowUpTrayIcon
                       className="h-8 w-8 text-pink-600"
