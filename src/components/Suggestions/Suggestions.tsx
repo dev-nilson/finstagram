@@ -22,10 +22,10 @@ export default function Suggestions() {
 
       {suggestions.map((suggestion) => (
         <div
-          key={suggestion.id}
-          className="flex items-center justify-between mt-3"
+        key={suggestion.id}
+        className="flex items-center justify-between mt-3"
         >
-          <Image
+          <img
             className="w-10 h-10 rounded-full border p-[2px]"
             width={100}
             height={100}
